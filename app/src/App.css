@@ -44,3 +44,18 @@
     transform: rotate(360deg);
   }
 }
+
+button {
+  font-size: 20px;
+  padding: 5px;
+  margin: 5px;
+  width: 50px;
+}
+
+#deleteButton {
+  width: 100px;
+}
+
+#deleteAllButton {
+  width: 120px;
+}
