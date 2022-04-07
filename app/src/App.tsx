@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { useState } from 'react';
 import * as Tone from 'tone'
-
+ 
 interface AppProps { }
 
 function App({ }: AppProps) {
@@ -26,7 +26,7 @@ function App({ }: AppProps) {
       synth.triggerAttackRelease(i, targetSong[num][1],sum)
       num++
       sum = sum + targetSong[num][1]
-    }
+    } 
   }
 
   function handleChange(value: string) {
