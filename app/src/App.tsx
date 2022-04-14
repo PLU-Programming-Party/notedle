@@ -3,18 +3,23 @@ import './App.css';
 import { useState } from 'react';
 import * as Tone from 'tone'
 import { Box } from './components/Box'
+import makePrettyColors from './SmartStuff'
 
 interface AppProps { }
 
 function App({ }: AppProps) {
 
   const allNotes = ["C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4"] // for future: C5, C#5, etc.?
-  const targetSong: Array<[string,number]> = [["B",.3], ["A",.3],["G",.6],["B",.3], ["A",.3],["G",.6],["B",.3],["A",.3],["G",.6]] // hot cross buns
+  const targetSong: Array<[string,number]> = [["B4",.3], ["A",.3],["G",.6],["B",.3], ["A",.3],["G",.6],["B",.3],["A",.3],["G",.6]] // hot cross buns
   const synth = new Tone.Synth().toDestination();
+
+  //this is target song but just the notes
+  const simplify = targetSong.map(current => current[0])
   
   const [words, setWords] = useState("")
   const [currentGuess, setCurrentGuess] = useState<string[]>([])
   const [previousGuessesUwU, setPreviousGuessesOwO] = useState<string[][]>([])
+  const [previousGuessColorsOwO, setPreviousGuessColorsUwU] = useState<string[][]>([])
 
   function playNote(value: string) {
     synth.triggerAttackRelease(value, "4n", Tone.now());
@@ -47,15 +52,16 @@ function App({ }: AppProps) {
   }
 
   function handleSubmit() {
-    setPreviousGuessesOwO((prev) => {return prev.concat([currentGuess])})
+    setPreviousGuessesOwO(prev => {return prev.concat([currentGuess])})
+    setPreviousGuessColorsUwU(prev => prev.concat([makePrettyColors(simplify, currentGuess)]))
     removeAllNotes()
   }
 
   return (
     <div className="App">
       <div>
-        {previousGuessesUwU.map(guess => {
-          return <Box guess={guess}/>
+        {previousGuessesUwU.map((guess,i) => {
+          return <Box guess={guess} color={previousGuessColorsOwO[i]}/>
         })}
       </div>
       <p><button onClick={()=> playAllNotes(currentGuess)}>Play</button> {currentGuess.join(", ")} </p>
@@ -68,7 +74,7 @@ function App({ }: AppProps) {
         {allNotes.map((note) => <button onClick={() => handleChange(note)} disabled={currentGuess.length >= targetSong.length}>{note}</button>)}
         <button onClick={() => removeNote()} disabled={currentGuess.length == 0} id="deleteButton">Delete</button>
         <button onClick={() => removeAllNotes()} disabled={currentGuess.length == 0} id = "deleteAllButton">Delete All</button>
-        <button onClick={() => handleSubmit()}> Submit </button>
+        <button onClick={() => handleSubmit()} > Submit </button>
       </div>
     </div>
   );
