@@ -3,14 +3,19 @@ import './App.css';
 import { useState } from 'react';
 import * as Tone from 'tone'
 import { Box } from './components/Box'
-import makePrettyColors from './SmartStuff'
+import { makePrettyColors } from './SmartStuff'
 
 interface AppProps { }
 
+const aLL_nOTES = [
+  "C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4"
+] as const;
+type NoteTuple = typeof aLL_nOTES; // readonly ['hearts', 'diamonds', 'spades', 'clubs']
+type Note = NoteTuple[number];  // "hearts" | "diamonds" | "spades" | "clubs"
+
 function App({ }: AppProps) {
 
-  const allNotes = ["C4", "C#4", "D4", "D#4", "E4", "F4", "F#4", "G4", "G#4", "A4", "A#4", "B4"] // for future: C5, C#5, etc.?
-  const targetSong: Array<[string,number]> = [["B4",.3], ["A",.3],["G",.6],["B",.3], ["A",.3],["G",.6],["B",.3],["A",.3],["G",.6]] // hot cross buns
+  const targetSong: Array<[Note, number]> = [["B4",.3], ["A4",.3],["G4",.6],["B4",.3], ["A4",.3],["G4",.6],["B4",.3],["A4",.3],["G4",.6]] // hot cross buns
   const synth = new Tone.Synth().toDestination();
 
   //this is target song but just the notes
@@ -71,7 +76,7 @@ function App({ }: AppProps) {
       <p>{words}</p>
       <p>It's <span style={{ fontWeight: "bold" }}>Awesome</span></p>
       <div>
-        {allNotes.map((note) => <button onClick={() => handleChange(note)} disabled={currentGuess.length >= targetSong.length}>{note}</button>)}
+        {aLL_nOTES.map((note) => <button onClick={() => handleChange(note)} disabled={currentGuess.length >= targetSong.length}>{note}</button>)}
         <button onClick={() => removeNote()} disabled={currentGuess.length == 0} id="deleteButton">Delete</button>
         <button onClick={() => removeAllNotes()} disabled={currentGuess.length == 0} id = "deleteAllButton">Delete All</button>
         <button onClick={() => handleSubmit()} > Submit </button>
