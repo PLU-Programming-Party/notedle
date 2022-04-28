@@ -1,11 +1,14 @@
 .App {
   text-align: center;
+  margin-top: 20px;
 }
+
 .App code {
   background: #FFF3;
   padding: 4px 8px;
   border-radius: 4px;
 }
+
 .App p {
   margin: 0.4rem;
 }
@@ -40,22 +43,42 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 button {
+  background-color: #cccccc;
   font-size: 20px;
   padding: 5px;
   margin: 5px;
   width: 50px;
 }
 
-#deleteButton {
+.sixCharsButton {
   width: 100px;
 }
 
 #deleteAllButton {
   width: 120px;
+}
+
+.yellow {
+  background-color: #b59f3b;
+  color: #FFFFFF;
+  font-family: "Verdana";
+}
+
+.grey {
+  background-color: #3A3A3C;
+  color: #FFFFFF;
+  font-family: "Verdana";
+}
+
+.green {
+  background-color: #538d4e;
+  color: #FFFFFF;
+  font-family: "Verdana";
 }

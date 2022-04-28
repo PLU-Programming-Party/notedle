@@ -1,15 +1,16 @@
 import React from "react";
+import type { PrettyColor } from "src/SmartStuff";
 import "./Box.css";
 
 type BoxProps = {
     guess: string[],
-    color: string[]
+    color: PrettyColor[]
 }
-export function Box(props: BoxProps){
-    return(
+export function Box(props: BoxProps) {
+    return (
         <div className="box">
-        {props.guess.map((current,i) => <p style={{backgroundColor: props.color[i]}} className="box-box">{current}</p>)}
-        {/* <pre> {JSON.stringify(props.guess)} </pre> */}
+            {props.guess.map((current, i) => <p className={`${props.color[i]} box-box`}>{current}</p>)}
+            {/* <pre> {JSON.stringify(props.guess)} </pre> */}
         </div>
     )
 }
