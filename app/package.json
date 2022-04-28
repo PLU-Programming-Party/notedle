@@ -2,7 +2,7 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
-    "test": "jest --watch",
+    "test": "jest --runInBand --watch",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
   },
