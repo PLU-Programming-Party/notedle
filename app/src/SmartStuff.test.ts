@@ -29,3 +29,9 @@ test('bagbagbag', () => {
 test('right place wrong time', () => {
     expect(makePrettyColors(['A', 'B', 'C'], ['B', 'C', 'A'])).toEqual(['yellow', 'yellow', 'yellow']);
 });
+
+test('need more yellow', () => {
+    expect(makePrettyColors(
+        ['A', 'A', 'B'],
+        ['A', 'B', 'A'])).toEqual(['green', 'yellow', 'yellow']);
+});
