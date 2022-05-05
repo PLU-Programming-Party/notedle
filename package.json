@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "cd app && npm run build"
+    "build": "cd app && npm install && npm run build"
   },
   "dependencies": {
     "firebase-tools": "^10.8.0"
