@@ -1,4 +1,4 @@
-export type PrettyColor = 'grey' | 'green' | 'yellow';
+export type PrettyColor = 'grey' | 'green' | 'yellow' | 'light-grey';
 
 export function makePrettyColors(actual: string[], guess: string[]): PrettyColor[] {
 
