@@ -4,6 +4,7 @@ import { useState } from 'react';
 import * as Tone from 'tone'
 import { Box } from './components/Box'
 import { makePrettyColors, PrettyColor } from './SmartStuff'
+import { Piano } from './components/Piano';
 
 interface AppProps { }
 
@@ -81,8 +82,10 @@ function App({ }: AppProps) {
         <button onClick={() => removeAllNotes()} disabled={currentGuess.length == 0} id="deleteAllButton">Delete All</button>
         <button onClick={() => handleSubmit()} className="sixCharsButton">Submit</button>
       </div>
+      <Piano/>
     </div>
   );
 }
 
 export default App;
+export { aLL_nOTES };
