@@ -14,16 +14,19 @@ const aLL_nOTES = [
 type NoteTuple = typeof aLL_nOTES; // readonly ['hearts', 'diamonds', 'spades', 'clubs']
 type Note = NoteTuple[number];  // "hearts" | "diamonds" | "spades" | "clubs"
 
+
 function App({ }: AppProps) {
 
   const targetSong: Array<[Note, number]> = [["B4", .3], ["A4", .3], ["G4", .6], ["B4", .3], ["A4", .3], ["G4", .6], ["B4", .3], ["A4", .3], ["G4", .6]] // hot cross buns
+  const grayey: Array<PrettyColor> = targetSong.map(() => 'light-grey')
   const synth = new Tone.Synth().toDestination();
 
   //this is target song but just the notes
   const simplify = targetSong.map(current => current[0])
 
   // const [words, setWords] = useState("")
-  const [currentGuess, setCurrentGuess] = useState<string[]>([])
+  //GO!
+  const [currentGuess, setCurrentGuess] = useState<string[]>(simplify.map(() => ""))
   const [previousGuessesUwU, setPreviousGuessesOwO] = useState<string[][]>([])
   const [previousGuessColorsOwO, setPreviousGuessColorsUwU] = useState<PrettyColor[][]>([])
 
@@ -43,7 +46,7 @@ function App({ }: AppProps) {
   function handleChange(value: string) {
     playNote(value)
     const guessedNotes = currentGuess.slice()
-    guessedNotes.push(value)
+    guessedNotes[guessedNotes.indexOf("")] = value
     setCurrentGuess(guessedNotes)
   }
 
@@ -54,7 +57,7 @@ function App({ }: AppProps) {
   }
 
   function removeAllNotes() {
-    setCurrentGuess([])
+    setCurrentGuess(simplify.map(() => ""))
   }
 
   function handleSubmit() {
@@ -69,18 +72,19 @@ function App({ }: AppProps) {
         {previousGuessesUwU.map((guess, i) => {
           return <Box guess={guess} color={previousGuessColorsOwO[i]} />
         })}
+        <Box guess={currentGuess} color={grayey} />
       </div>
-      <p><button onClick={() => playAllNotes(currentGuess)}>Play</button> {currentGuess.join(", ")} </p>
+      <p><button onClick={() => playAllNotes(currentGuess)}>Play</button>  </p>
       {/* <input
         type="text"
         onChange={({ target: { value } }) => setWords(value)} />
       <p>{words}</p> */}
       <p><span style={{ fontWeight: "bold", color: "#121213" }}>It's Awesome</span></p>
       <div>
-        {aLL_nOTES.map((note) => <button onClick={() => handleChange(note)} disabled={currentGuess.length >= targetSong.length}>{note}</button>)}
+        {aLL_nOTES.map((note) => <button onClick={() => handleChange(note)} disabled={currentGuess.indexOf("") < 0}>{note}</button>)}
         <button onClick={() => removeNote()} disabled={currentGuess.length == 0} className="sixCharsButton">Delete</button>
         <button onClick={() => removeAllNotes()} disabled={currentGuess.length == 0} id="deleteAllButton">Delete All</button>
-        <button onClick={() => handleSubmit()} className="sixCharsButton">Submit</button>
+        <button onClick={() => handleSubmit()} className="sixCharsButton" disabled={currentGuess.indexOf("") >= 0}>Submit</button>
       </div>
       <Piano/>
     </div>
