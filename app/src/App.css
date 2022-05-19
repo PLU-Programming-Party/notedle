@@ -65,6 +65,17 @@ button {
   width: 120px;
 }
 
+h1 {
+  color: #FFFFFF;
+  font-family: "Comic Sans MS", "Comic Sans", serif;
+}
+
+#piano {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .yellow {
   background-color: #b59f3b;
   color: #FFFFFF;

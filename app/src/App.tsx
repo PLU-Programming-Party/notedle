@@ -68,6 +68,9 @@ function App({ }: AppProps) {
 
   return (
     <div className="App">
+      <header>
+        <h1>Notedle</h1>
+      </header>
       <div>
         {previousGuessesUwU.map((guess, i) => {
           return <Box guess={guess} color={previousGuessColorsOwO[i]} />
@@ -81,15 +84,18 @@ function App({ }: AppProps) {
       <p>{words}</p> */}
       <p><span style={{ fontWeight: "bold", color: "#121213" }}>It's Awesome</span></p>
       <div>
-        {aLL_nOTES.map((note) => <button onClick={() => handleChange(note)} disabled={currentGuess.indexOf("") < 0}>{note}</button>)}
         <button onClick={() => removeNote()} disabled={currentGuess.length == 0} className="sixCharsButton">Delete</button>
         <button onClick={() => removeAllNotes()} disabled={currentGuess.length == 0} id="deleteAllButton">Delete All</button>
         <button onClick={() => handleSubmit()} className="sixCharsButton" disabled={currentGuess.indexOf("") >= 0}>Submit</button>
       </div>
-      <Piano/>
+      <div id="piano"><Piano onClick={(note) => handleChange(note)} disabled={currentGuess.indexOf("") < 0} /></div>
     </div>
   );
 }
 
+// Garbage
+// {aLL_nOTES.map((note) => <button onClick={() => handleChange(note)} disabled={currentGuess.indexOf("") < 0}>{note}</button>)}
+
+
 export default App;
-export { aLL_nOTES };
+export { aLL_nOTES, Note };
