@@ -6,6 +6,7 @@ import { render } from "react-dom";
 
 type PianoProps = {
     disabled: boolean;
+    keysDisabled: Set<Note>;
     onClick: (note: Note) => void
 }
 
@@ -13,7 +14,7 @@ export function Piano(props: PianoProps) {
     //TODO: Make keys change color to be slightly darker when pressed
     //const [keyShadow, setKeyShadow] = React.useState([]); 
 
-    const keys = aLL_nOTES.map((current, i) => <PianoKey key={i} note={current} octave={4} onClick={() => props.onClick(current)} disabled={props.disabled} />)
+    const keys = aLL_nOTES.map((current, i) => <PianoKey key={i} note={current} octave={4} onClick={() => props.onClick(current)} disabled={props.disabled || props.keysDisabled.has(current)} />)
     return (
         <div className="piano">
             {keys}

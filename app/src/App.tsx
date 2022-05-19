@@ -34,6 +34,18 @@ function App({ }: AppProps) {
     synth.triggerAttackRelease(value, "4n", Tone.now());
   }
 
+  function getGreyedNotesGuessed() {
+    const notesMaGoats = new Set<Note>();
+    for (let i = 0; i < previousGuessColorsOwO.length; i++) {
+      for (let j = 0; j < previousGuessColorsOwO[i].length; j++) {
+        if (previousGuessColorsOwO[i][j] === "grey") {
+          notesMaGoats.add(previousGuessesUwU[i][j] as Note); // don't do this thanks -dmac
+        }
+      }
+    }
+    return notesMaGoats;
+  }
+
   function playAllNotes(notesArr: string[]) {
     const now = Tone.now()
     var sum = 0
@@ -78,24 +90,23 @@ function App({ }: AppProps) {
         <Box guess={currentGuess} color={grayey} />
       </div>
       <p><button onClick={() => playAllNotes(currentGuess)}>Play</button>  </p>
-      {/* <input
-        type="text"
-        onChange={({ target: { value } }) => setWords(value)} />
-      <p>{words}</p> */}
       <p><span style={{ fontWeight: "bold", color: "#121213" }}>It's Awesome</span></p>
       <div>
         <button onClick={() => removeNote()} disabled={currentGuess.length == 0} className="sixCharsButton">Delete</button>
         <button onClick={() => removeAllNotes()} disabled={currentGuess.length == 0} id="deleteAllButton">Delete All</button>
         <button onClick={() => handleSubmit()} className="sixCharsButton" disabled={currentGuess.indexOf("") >= 0}>Submit</button>
       </div>
-      <div id="piano"><Piano onClick={(note) => handleChange(note)} disabled={currentGuess.indexOf("") < 0} /></div>
+      <div id="piano"><Piano onClick={(note) => handleChange(note)} disabled={currentGuess.indexOf("") < 0} keysDisabled={getGreyedNotesGuessed()} /></div>
     </div>
   );
 }
 
 // Garbage
 // {aLL_nOTES.map((note) => <button onClick={() => handleChange(note)} disabled={currentGuess.indexOf("") < 0}>{note}</button>)}
-
+/* <input
+        type="text"
+        onChange={({ target: { value } }) => setWords(value)} />
+      <p>{words}</p> */
 
 export default App;
 export { aLL_nOTES, Note };
