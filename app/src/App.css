@@ -50,11 +50,14 @@
 }
 
 button {
-  background-color: #cccccc;
-  font-size: 20px;
+  color: #FFFFFF;
+  background-color: #e0e0e09d;
+  font-size: 16px;
   padding: 5px;
   margin: 5px;
   width: 50px;
+  border-radius: 10px;
+  font-family: "Comic Sans MS", "Comic Sans", serif;
 }
 
 .sixCharsButton {
