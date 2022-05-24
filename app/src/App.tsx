@@ -36,15 +36,26 @@ function App({ }: AppProps) {
 
   function getGreyedNotesGuessed() {
     const notesMaGoats = new Set<Note>();
+    const notesGaMoats = new Set<Note>();
     for (let i = 0; i < previousGuessColorsOwO.length; i++) {
       for (let j = 0; j < previousGuessColorsOwO[i].length; j++) {
         if (previousGuessColorsOwO[i][j] === "grey") {
           notesMaGoats.add(previousGuessesUwU[i][j] as Note); // don't do this thanks -dmac
+        } else {
+          notesGaMoats.add(previousGuessesUwU[i][j] as Note);
         }
       }
     }
-    return notesMaGoats;
+    return subtractNoteSet(notesMaGoats, notesGaMoats);
   }
+
+  function subtractNoteSet(setA: Set<Note>, setB: Set<Note>) {
+    let _difference = new Set(setA)
+    for (let elem of setB) {
+        _difference.delete(elem)
+    }
+    return _difference
+}
 
   function playAllNotes(notesArr: string[]) {
     const now = Tone.now()
