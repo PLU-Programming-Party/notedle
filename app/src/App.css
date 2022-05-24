@@ -60,6 +60,10 @@ button {
   font-family: "Comic Sans MS", "Comic Sans", serif;
 }
 
+.playButton {
+  width: 120px;
+}
+
 .sixCharsButton {
   width: 100px;
 }

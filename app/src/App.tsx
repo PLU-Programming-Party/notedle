@@ -102,7 +102,7 @@ function App({ }: AppProps) {
         })}
         <Box guess={currentGuess} color={grayey} />
       </div>
-      <p><button onClick={() => playAllNotes(currentGuess)}>Play</button>  </p>
+      <p><button onClick={() => playAllNotes(currentGuess)} className="playButton">Play Notes</button>  </p>
       <p><span style={{ fontWeight: "bold", color: "#121213" }}>It's Awesome</span></p>
       <div>
         <button onClick={() => removeNote()} disabled={currentGuess.length == 0} className="sixCharsButton">Delete</button>
