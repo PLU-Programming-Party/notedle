@@ -61,8 +61,10 @@ function App({ }: AppProps) {
     const now = Tone.now()
     var sum = 0
     for (let i = 0; i < notesArr.length; i++) {
-      synth.triggerAttackRelease(notesArr[i], targetSong[i][1], now + sum)
-      sum = sum + targetSong[i][1]
+      if(notesArr[i] !== "") {
+        synth.triggerAttackRelease(notesArr[i], targetSong[i][1], now + sum)
+        sum = sum + targetSong[i][1]
+      }
     }
   }
 
