@@ -77,7 +77,14 @@ function App({ }: AppProps) {
 
   function removeNote() {
     const notes = currentGuess.slice()
-    notes.pop()
+    for(let i = 0; i < notes.length; i++) {
+      if(notes[i] === "" && i !== 0 ) {
+        notes[i-1] = ""
+      } else if(i >= notes.length - 1) {
+        notes.pop()
+        notes.push("")
+      }
+    }
     setCurrentGuess(notes)
   }
 
